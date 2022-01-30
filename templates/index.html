@@ -1,0 +1,24 @@
+{% extends 'base.html' %}{% load static %} {% block title %}Home{% endblock title %}{% block content %}
+
+
+<!-- Header -->
+
+{% include 'header.html'%}
+
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<div class="main-banner header-text">{% include 'banner.html'%}</div>
+<!-- Banner Ends Here -->
+
+<!---call-to-action-section-->
+
+<!----end-of-call-action---->
+
+
+<section class="blog-posts">{% include 'blog-post.html'%}</section>
+
+
+<footer>
+    {% include 'footer.html'%}
+</footer>
+{% endblock content %}

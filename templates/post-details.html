@@ -1,0 +1,159 @@
+{% extends 'base.html' %}{% load static %}{% load markdownsupport %}{% block title %}POST-DETAILS{% endblock title %}{% block content %}
+<!-- Header -->
+<header class="">
+    {% include 'header.html'%}
+</header>
+
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>Post Details</h4>
+                        <h2>
+                            SINGLE POST-DETAILS
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Banner Ends Here -->
+
+
+
+<section class="blog-posts grid-system">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="all-blog-posts">
+                    <div class="row">
+
+                        <div class="col-lg-12">
+
+                            <div class="blog-post">
+                                <div class="blog-thumb">
+                                    <img src="/media/{{posts.img}}" alt="">
+                                </div>
+                                <div class="down-content">
+                                    <a href="/allpostonecatogery/{{posts.cat.url}}"><span>{{posts.cat.title}}</span></a>
+                                    <a href="post-details.html">
+                                        <h4>{{posts.title}}</h4>
+                                    </a>
+                                    <ul class="post-info">
+                                        <li><a href="#">{{posts.author}}</a></li>
+                                        <li><a href="#">{{posts.add_date}}</a></li>
+
+                                    </ul>
+                                    <p>{{posts.content|convert_markdown|safe}}</p>
+                                    <div class="post-options">
+                                        <div class="row">
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="sidebar-item comments">
+                                <div class="sidebar-heading">
+                                    <h2> comments</h2>
+                                </div>
+                                <div class="content">
+                                    <ul>{% for postcomment in postcomments%}
+                                        <li>
+                                            <div class="right-content">
+                                                <h4>{{postcomment.name}}<span>May 16, 2020</span></h4>
+                                                <span>{{postcomment.email}}</span>
+                                                <p>{{postcomment.comments | truncatewords:50}}
+                                                </p>
+                                            </div>
+                                        </li>{% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div class="sidebar-item submit-comment">
+                                <div class="sidebar-heading">
+                                    <h2>Leave Your comment</h2>
+                                </div>
+                                <div class="content">
+                                    <form id="comment" action="#" method="post">
+
+                                        {% csrf_token %}
+                                        <div class="row">
+                                            {{forms.as_table}}
+                                            <div class="col-lg-12">
+                                                <fieldset>
+                                                    <button type="submit" id="form-submit" class="main-button">Submit</button>
+                                                </fieldset>
+                                            </div>
+                                        </div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item search">
+                                <form id="search_form" name="gs" method="GET" action="#">
+                                    <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12">
+                            <div class="sidebar-item categories">
+                                <div class="sidebar-heading">
+                                    <h2>All Posts</h2>
+                                </div>
+
+                                <div class="content">
+                                    <ul>
+                                        <li>
+                                            <a href="#">
+                                            </a>
+                                            <ul class="collection">
+                                                {% for all_post in all_posts %}
+                                                <li class="collection-item avatar">
+                                                    <a href="/post-details/{{all_post.url}}"><img src=" /media/{{all_post.img}} " alt=" " class="circle " style="width: 100px;"></a>
+                                                    <a href="/post-details/{{all_post.url}} "><span class="title ">{{all_post.title}}</span></a>
+                                                    <p>{{all_post.content |truncatewords:20|convert_markdown|safe}}
+                                                    </p>
+
+                                                </li>{% endfor %}
+                                            </ul>
+
+                                        </li>
+                                        <br>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    {% include 'footer.html' %}
+</footer>{% endblock content %}

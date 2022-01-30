@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+</head>{% load static %}
+
+<body>
+    <div class="container-fluid">
+        <div class="owl-banner owl-carousel">
+            {% for cat in cats %}
+            <div class="item">
+                <img src="/media/{{cat.img}}" alt="">
+                <div class="item-content">
+                    <div class="main-content">
+                        <div class="meta-category">
+                            <a href="/allpostonecatogery/{{cat.url}}"><span>{{cat.title}}</span></a>>
+                        </div>
+
+                        <h4>{{cat.description | truncatewords:5}}</h4>
+
+                        <ul class="post-info">
+                            <li>{{cat.author}}
+                            </li>
+                            <li>{{cat.add_date}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>

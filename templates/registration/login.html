@@ -1,0 +1,29 @@
+{% extends 'base.html' %}{% load crispy_forms_tags %}{% block content %}
+
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+    <div class="wrapper wrapper--w790">
+        <div class="card card-5">
+            <div class="card-heading">
+                <h2 class="title">LOGIN </h2>
+            </div>
+            <div class="card-body">
+                <h1 class='text-center mb-5'>Login Page</h1>
+                <form action="" method="POST">
+                    {% csrf_token %} {{form | crispy }}<button class="btn btn-success ml-2 mt-5" type="submit">Login</button></form>
+                <div class="contanier">
+                    <div class="row">
+                        <div class="mt-5 col-sm-4"><a href="{% url 'password_reset'%}" class="mt-5">Forget Password</a></div>
+                        <div class="mt-5 col-sm-4">
+                            <a href="{% url 'register'%}" class="mt-5">Create New Account</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock content %}

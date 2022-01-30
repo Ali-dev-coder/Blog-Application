@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %} {% load markdownsupport %}
+
+<head>
+
+</head>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="all-blog-posts">
+                <div class="row">
+
+                    {% for post in posts %}
+                    <div class="col-lg-12">
+                        <div class="blog-post">
+                            <div class="blog-thumb">
+
+                            </div>
+                            <div class="down-content">
+
+                                <span>{{post.cat}}</span>
+
+                                <a href="{% url 'post-details' post.url%}">
+                                    <h4>{{post.title}}</h4>
+                                </a>
+                                <ul class="post-info">
+                                    <li>
+                                        {{post.author}}
+                                    </li>
+                                    <li>
+                                        {{post.add_date}}
+                                    </li>
+
+                                </ul>
+                                <img src="/media/{{post.img}}" alt="" style="width: 400px;">
+                                <p>{{post.content | truncatewords:50|convert_markdown|safe}}
+                                </p>
+                                <div class="btn btn-info" style="margin-top: 10px; ">
+                                    <a href="/post-details/{{post.url}} " style="color:rgb(253, 250, 253) ">Read more</a></div>
+                                <br>
+                                <br>
+
+                                <div class="post-options">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <ul class="post-tags">
+                                                <li><i class="fa fa-tags"></i></li>
+                                                <li>
+                                                    <a href="#">{{post.tag}}</a>,</li>
+
+                                            </ul>
+                                        </div>
+                                        <div class="col-6">
+                                            <ul class="post-share">
+                                                <li><i class="fa fa-share-alt"></i></li>
+                                                <li><a href="www.facebook.com">Facebook</a>,</li>
+                                                <li><a href="www.twitter.com"> Twitter</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+
+
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="sidebar">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="sidebar-item search">
+                            <form id="search_form" name="gs" method="GET" action="#">
+                                <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                            </form>
+                        </div>
+                    </div>
+                    <div>{% include "side-bar-post-cat.html" %}</div>
+                    <div class="col-lg-12">
+                        <div class="sidebar-item tags">
+                            <div class="sidebar-heading">
+                                <h2>Tag Clouds</h2>
+                            </div>
+                            <div class="content">
+                                <ul>{% for post in posts %}
+                                    <li>
+                                        <a href="#">{{post.tag}}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

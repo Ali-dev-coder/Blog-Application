@@ -1,0 +1,148 @@
+{% extends 'base.html' %}{% load markdownsupport %}{% block title %}Blog{% endblock title %} {% block content %}
+<!-- ***** Preloader Start ***** -->
+
+<!-- ***** Preloader End ***** -->
+
+<!-- Header -->
+<header class="">
+    {% include 'header.html'%}
+</header>
+
+<!-- Page Content -->
+<!-- Banner Starts Here -->
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>Single Catogery</h4>
+                        <h2>{{catos.title}}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- Banner Ends Here -->
+
+
+
+<section class="blog-posts grid-system">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="blog-thumb">
+                    <img src="/media/{{catos.img}}" alt="" style="width: 100%;">
+                </div>
+                <div class="all-blog-posts">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="blog-post">
+                                <div class="down-content">
+                                    <span>{{catos.title}}</span>
+                                    <a href="post-details.html">
+
+                                    </a>
+                                    <ul class="post-info">
+                                        <li>
+                                            <a href="#">{{catos.author}}</a>
+                                        </li>
+                                        <li><a href="#">{{catos.add_date}}</a></li>
+                                    </ul>
+
+                                    <div class="post-options">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <ul class="post-tags">
+                                                    <li><i class="fa fa-tags"></i></li>
+                                                    <li><a href="#">Best Templates</a>,</li>
+                                                    <li><a href="#">TemplateMo</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="col-lg-6">
+                        {% for post in posts %}
+                        <div class="blog-post">
+                            <div class="blog-thumb">
+                                <img src="/media/{{post.img}}" alt="" style="width: 100px;">
+                            </div>
+                            <div class="down-content">
+                                <span>{{post.title}}</span>
+                                <a href="post-details.html">
+
+                                </a>
+                                <ul class="post-info">
+                                    <li>
+                                        <a href="#">{{post.author}}</a>
+                                    </li>
+                                    <li><a href="#">{{post.add_date}}</a></li>
+                                </ul>
+                                <p>{{post.content|convert_markdown|safe}}</p>
+                            </div>
+                        </div>{% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="sidebar-item search">
+                                <form id="search_form" name="gs" method="GET" action="#">
+                                    <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
+                                </form>
+                            </div>
+
+                        </div>
+
+                        <div>{% include 'side-bar-post-cat.html'%}</div>
+                        <div class="col-lg-12">
+                            <div class="sidebar-item tags">
+                                <div class="sidebar-heading">
+                                    <h2>Tag Clouds</h2>
+                                </div>
+                                <div class="content">
+                                    <ul>
+                                        <li>
+                                            <!---<a href="#">{{post.tag}}</a>---->
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer>
+    {% include 'footer.html'%}
+</footer>{% endblock content %}
