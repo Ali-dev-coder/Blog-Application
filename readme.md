@@ -1,4 +1,4 @@
-Simple Blog Application with Markdown support
+# Simple Blog Application with Markdown support #
 
 
 # Home Page #
